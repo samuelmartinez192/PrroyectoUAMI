@@ -23,7 +23,6 @@ namespace PrroyectoUAMI.Controllers
                 HttpResponseMessage response = serviceObj.GetReponse(uri);
                 response.EnsureSuccessStatusCode();
                 users = response.Content.ReadAsAsync<List<User>>().Result;
-                ViewBag.Title = "Todos los usuarios";
             }
             catch (Exception ex)
             {
@@ -46,7 +45,6 @@ namespace PrroyectoUAMI.Controllers
                 HttpResponseMessage response = serviceObj.GetReponse(uri);
                 response.EnsureSuccessStatusCode();
                 user = response.Content.ReadAsAsync<User>().Result;
-                ViewBag.Title = "All Products";
             }
             catch (Exception ex)
             {
@@ -79,7 +77,6 @@ namespace PrroyectoUAMI.Controllers
                 HttpResponseMessage response = serviceObj.GetReponse(uri);
                 response.EnsureSuccessStatusCode();
                 user = response.Content.ReadAsAsync<User>().Result;
-                ViewBag.Title = "Todos los usuarios";
             }
             catch (Exception ex)
             {
@@ -102,6 +99,10 @@ namespace PrroyectoUAMI.Controllers
                 var serviceObj = new ServiceRepository();
                 var uri = "api/user";
                 //var uri = "api/user/InsertUser";
+
+                user.FechaIngreso = DateTime.Now;
+                user.Estatus = true;
+
                 HttpResponseMessage response = serviceObj.PostResponse(uri, user);
                 response.EnsureSuccessStatusCode();
             }
